@@ -1,0 +1,25 @@
+{
+  "name": "finlybower",
+  "description": "HTML, CSS, JS",
+  "main": "index.html",
+  "authors": [
+    "nanda <nandapuspitarana@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JS"
+  ],
+  "homepage": "https://github.com/nandapuspitarana/finly",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.0.0-beta"
+  }
+}
