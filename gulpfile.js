@@ -1,23 +1,14 @@
-'use strict';
+'use strict' //js reset
 
-// https://css-tricks.com/gulp-for-beginners/
+//  https://css-tricks.com/gulp-for-beginners/
 
-// Documentation
-// https://browsersync.io/docs/gulp
-// https://browsersync.io/docs/options
-// https://www.npmjs.com/package/gulp-sass
-// https://www.npmjs.com/package/gulp-sourcemaps
-// https://www.npmjs.com/package/gulp-autoprefixer
-// https://www.npmjs.com/package/gulp-uglify
-// https://github.com/robrich/gulp-if
-// https://www.npmjs.com/package/gulp-cssnano
-// var runSequence = require('run-sequence');
-
+//========================SOME VAR HERE!! for REQUIRE======
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+
+var browserSync = require('browser-sync').create();
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
@@ -28,122 +19,121 @@ var del = require('del');
 var runSequence = require('run-sequence');
 
 
+
+// ===========test hello gulp
 gulp.task('hello', function() {
-  console.log('Hello Zell');
+  console.log('Hello laptopapik');
 });
 
-// gulp.task('watch', function(){
-//   gulp.watch('app/scss/**/*.scss', ['sass']); 
-//   // Other watchers
-
-// })
-
-// Start browserSync server
-// gulp.task('browserSync', function() {
-//     browserSync.init({
-//         server: {
-//             baseDir: 'app',
-//             routes: {
-//                 "/bower_components": "bower_components"
-//             }
-//         },
-//     })
-// });
 
 
-// SASS Task
-gulp.task('sass', function(){
-  return gulp.src('app/scss/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError)) // Converts Sass to CSS with gulp-sass
+
+// ==============SASS TASK HERE ============
+gulp.task('sass', function() {
+  return gulp.src('app/scss/**/*.scss') //edit this // ** = semua file
+  .pipe(sourcemaps.init()) //some sourcemaps
+    .pipe(sass().on('error', sass.logError)) //convert Sass to CSS
     .pipe(autoprefixer({
             browsers: ['last 2 versions'],
-            cascade: true
+            cascade: false
         }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/css'))
     .pipe(browserSync.reload({
       stream: true
-    }))
+    })) //edit this
 });
 
-// Start browserSync server
+ 
+gulp.task('watch', function () {
+  gulp.watch('app/scss/**/*.scss', ['sass']); //edit this
+});
+
+
+//===================== BROSWER SYNC======  
 gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: 'app',
-            routes: {
-                "/bower_components": "bower_components"
-            }
-        },
-    })
-});
+  browserSync.init({
+    server: {
+      baseDir: 'app', //file exist
+      routes: {
+        "/bower_components": "bower_components" //add link for bower to browsersyn
+    }
+    },
 
+  })
+})   //browsersync.io/docs/gulp
 
-gulp.task('images', function(){
-    return gulp.src('./app/images/**/*.+(png|jpg|jpeg|gif|svg)')
-    // Caching images that ran through imagemin
-    .pipe((imagemin({
-        interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-});
+// //=================== USEREF===============
+// gulp.task('useref', function(){
+//   return gulp.src('app/*.html')
+//     .pipe(useref())
+//     .pipe(gulp.dest('dist'))
+// });
 
-
-gulp.task('fonts', function() {
-  return gulp.src('./app/fonts/**/*')
-  .pipe(gulp.dest('dist/fonts'))
-});
-
-// Optimization Tasks
-// ------------------
-
-// Optimizing CSS and JavaScript
-gulp.task('useref', function() {
-
+//============== CSSNANO ===============
+gulp.task('useref', function(){
   return gulp.src('app/*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
+    // Minifies only if it's a CSS file
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
 });
 
-
-// Watchers
-// ------------------
-gulp.task('watch', ['browserSync', 'sass'], function (){
-  gulp.watch('app/sass/**/*.scss', ['sass']);
-  // Reloads the browser whenever HTML or JS files change
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/js/**/*.js', browserSync.reload);
+//===================  UGLIFY & GULPIF=========
+gulp.task('useref', function(){
+  return gulp.src('app/*.html')
+    .pipe(useref())
+    // Minifies only if it's a JavaScript file
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulp.dest('dist'))
 });
 
+//================IMAGEMIN + CACHE==============
+gulp.task('images', function(){
+  return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg)')
+  // Caching images that ran through imagemin
+  .pipe((imagemin({    // delete cache if folder not show
+      interlaced: true
+    })))
+  .pipe(gulp.dest('dist/images'))
+});
 
-// Now Gulp will delete the `dist` folder for you whenever gulp clean:dist is run.
-// Cleaning
-gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
-    return cache.clearAll(cb);
-  });
+//===================FONTS===============
+gulp.task('fonts', function() {
+  return gulp.src('app/fonts/**/*')
+  .pipe(gulp.dest('dist/fonts'))
 })
 
+//================CLEANING===========
 gulp.task('clean:dist', function() {
-    return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+  return del.sync('dist');
 })
 
+//=================run-sequence task-name==========
+gulp.task('task-name', function(callback) {
+  runSequence('task-one', 'task-two', 'task-three', callback);
+});
+
+
+// ===================== GULP WATCH========
+gulp.task('watch', ['browserSync', 'sass'], function (){
+  gulp.watch('app/scss/**/*.scss', ['sass']); 
+  gulp.watch('app/*.html', browserSync.reload); 
+  gulp.watch('app/js/**/*.js', browserSync.reload); 
+  // Other watchers
+})
+
+//===============COMPAILE===========
+gulp.task('build', function (callback) {
+  runSequence('clean:dist', 
+    ['sass', 'useref', 'images', 'fonts'],
+    callback
+  )
+})
 
 gulp.task('default', function (callback) {
-    runSequence(['sass','browserSync', 'watch' ],
-        callback
-    )
-})
-
-
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean:dist',
-    'sass',
-    ['useref', 'images', 'fonts','sass'],
+  runSequence(['sass','browserSync', 'watch'],
     callback
   )
 })
