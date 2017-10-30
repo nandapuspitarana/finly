@@ -1,0 +1,60 @@
+#gallery {
+    position: relative;
+    .image-gallery{
+        height :410px;
+        overflow:hidden;
+        
+        .galleryedit {
+            height :115%;
+            width : 100% ;
+            object-fit:cover;
+        }
+    }
+
+    .image-gallery:hover{
+        .overlay {
+            margin-top: 0%;
+        }
+
+        .galleryedit {
+            height: 130%;
+            transition: all 5.35s ease-in-out;
+        }
+    }
+
+    .overlay {
+        margin-top: 170%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 60px 40px 30px;
+        color: #fff;
+        overflow: hidden;
+
+        transition: all .35s ease-in-out;
+
+        
+
+        h3 {
+            padding-top: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: .6px;
+            line-height: 26px;
+            margin-bottom: 30px;
+        }
+
+        i {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+            border-radius: 100%;
+            line-height: 45px;
+            background-color: $g;
+            color:$w;
+        }
+    }
+}
