@@ -98,7 +98,19 @@
     }
 
     .statistic {
-        margin-top: 150px;
+        margin-top: 150px;       
+    }
+
+    @media screen and (max-width: 990px) {
+        .statistic {
+            margin-top: 15px;
+        }
+        h3 {
+            border : 1px solid $b;
+            border-radius: 3rem;
+            margin-top: 14px;
+            padding : 10px 20px;
+        }
     }
 
     h3 {
