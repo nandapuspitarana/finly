@@ -8,6 +8,7 @@
             height :115%;
             width : 100% ;
             object-fit:cover;
+            transition: all 0.35s ease-in-out;
         }
     }
 
@@ -18,18 +19,18 @@
 
         .galleryedit {
             height: 130%;
-            transition: all 5.35s ease-in-out;
+            transition: all 3.35s ease-in;
         }
     }
 
     .overlay {
         margin-top: 170%;
         background-color: rgba(0, 0, 0, 0.8);
-        padding: 60px 40px 30px;
-        color: #fff;
+        padding: 60px 30px;
+        color: $w;
         overflow: hidden;
 
-        transition: all .35s ease-in-out;
+        transition: all 0.35s ease-in-out;
 
         
 

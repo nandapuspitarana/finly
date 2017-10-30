@@ -1,6 +1,10 @@
 #about_us {
     padding: 180px 0;
 
+    @media screen and (max-width: 456px) {
+        padding: 50px 0;
+    }
+
     .img_profile {
         position: relative;
         overflow: hidden;
@@ -9,32 +13,33 @@
         margin-left: 3vw;
     }
 
-    @media screen and (max-width:456px) {
-	    .img_profile {
-	        width: 90vw;
-	    	height: 90vw;
-	    	margin : auto;
-	    	margin-left: 0px;
-	    }
+    @media screen and (max-width: 456px) {
+        .img_profile {
+            width: 90vw;
+            height: 90vw;
+            margin: auto;
+            margin-left: 0px;
+        }
 
-	    .imageprofileedit{
-    	    width: 134vw;
-    		height: 94vw;
-	    }
-	}
+        .imageprofileedit {
+            width: 134vw;
+            height: 94vw;
+        }
+    }
 
-	@media screen and (max-width:990px) {
-	    .img_profile {
-	    	margin : auto;
-	    }
-	}
+    @media screen and (max-width: 990px) {
+        .img_profile {
+            margin: auto;
+        }
+    }
 
     .imageprofileedit {
         position: absolute;
         width: 612px;
         height: 421px;
-        object-fit: cover;
         left: -140px;
+        background-image: url("../images/image-7.jpg");
+        background-size: 612px 421px;
     }
 
     .header_section {
@@ -89,6 +94,23 @@
             font-weight: 400;
             color: $b_pr;
             opacity: 0.3;
+        }
+    }
+
+    .statistic {
+        margin-top: 150px;
+    }
+
+    h3 {
+        display: block;
+        font-size: 60px;
+        color: $b_pr;
+
+        span {
+            display: block;
+            font-size: 18px;
+            color: $b;
+            margin-top: 10px;
         }
     }
 }
