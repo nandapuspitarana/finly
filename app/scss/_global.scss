@@ -10,6 +10,7 @@ body {
 
 // section
 .title_section {
+    display: block;
 	text-transform: uppercase;
 	font-size: 15px;
     letter-spacing: 1.5px;
@@ -19,9 +20,17 @@ body {
 }
 
 .desc_section {
+    display: block;
 	font-size: 36px;
 	font-weight: 600;
 	color: black;
+}
+
+.paraghraphedit {
+        font-size: 14px;
+        line-height: 28px;
+        letter-spacing: 0.8px;
+        font-weight: 500;
 }
 
 @media screen and (max-width:700px) {
