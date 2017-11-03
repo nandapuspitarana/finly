@@ -20,9 +20,9 @@
 	    }
     }
 
-    img {
-	max-width: 100%;
-    margin-bottom: 30px;
+    img{
+    max-width: 100%;
+    margin-bottom: 30px;   
     }
 
     span {
@@ -45,5 +45,15 @@
 
     .content {
         opacity : 0.5;
+
+        &:hover {
+        opacity : 1;
+        }
+    }
+
+    .swiper-slide>img {
+    max-width: 70%;
+    margin-top : 1rem;
+    margin-bottom: 30px;
     }
 }
